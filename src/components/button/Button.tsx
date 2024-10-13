@@ -1,5 +1,20 @@
-import { PropsWithChildren } from 'react';
+import { ComponentPropsWithoutRef, forwardRef, PropsWithChildren } from 'react';
+import { Slot, Slottable } from '../common/slot';
 
-export default function Button({ children }: PropsWithChildren) {
-  return <button>{children}</button>;
+interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
+  asChild?: boolean;
 }
+
+const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
+  ({ asChild, children, ...restProps }, ref) => {
+    const Element = asChild ? Slot : 'button';
+
+    return (
+      <Element ref={ref} {...restProps}>
+        <Slottable>{children}</Slottable>
+      </Element>
+    );
+  }
+);
+
+export default Button;
