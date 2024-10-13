@@ -19,7 +19,7 @@
     }
   },
   "scripts": {
-    "build": "vite build && tsc",
+    "build": "vite build && tsc -p tsconfig.build.json",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
