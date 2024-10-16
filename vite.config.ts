@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import swc from 'rollup-plugin-swc3';
 import { resolve } from 'path';
 
 export default defineConfig({
@@ -21,6 +22,17 @@ export default defineConfig({
           'react-dom': 'ReactDOM',
         },
       },
+      plugins: [
+        swc({
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              tsx: true,
+            },
+            target: 'es2015',
+          },
+        }),
+      ],
     },
   },
   plugins: [react()],
