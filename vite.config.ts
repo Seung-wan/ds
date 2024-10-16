@@ -29,7 +29,7 @@ export default defineConfig({
               syntax: 'typescript',
               tsx: true,
             },
-            target: 'esnext',
+            target: 'es2015',
           },
         }),
       ],
