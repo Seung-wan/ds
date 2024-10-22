@@ -13,10 +13,6 @@ type Story = StoryObj<typeof Button>;
 export const ButtonStory: Story = {
   name: 'Button',
   render: () => {
-    return (
-      <Button asChild onClick={() => console.log('out')}>
-        <label onClick={() => console.log('in')}>123</label>
-      </Button>
-    );
+    return <Button className="text-red-600">버튼</Button>;
   },
 };
