@@ -10,6 +10,16 @@ interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   isLoading?: boolean;
 }
 
+/**
+ *  Button 컴포넌트입니다.
+ *  @param asChild 렌더링 위임을 위해 사용합니다.
+ *  @param isLoading 로딩 상태를 처리하기 위해 사용합니다.
+ *  @example
+ * ```
+ *  <Button>로그인</Button>
+ *  <Button isLoading={isLoginLoading}>로그인</Button>
+ * ```
+ */
 const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
   (
     { asChild, className, isLoading = false, children, disabled, ...restProps },
