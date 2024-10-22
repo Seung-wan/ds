@@ -12,7 +12,11 @@ type Story = StoryObj<typeof Button>;
 
 export const ButtonStory: Story = {
   name: 'Button',
-  args: {
-    children: '버튼입니다.',
+  render: () => {
+    return (
+      <Button asChild onClick={() => console.log('out')}>
+        <label onClick={() => console.log('in')}>123</label>
+      </Button>
+    );
   },
 };
