@@ -1,13 +1,21 @@
-import { ComponentPropsWithoutRef, forwardRef, PropsWithChildren } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  forwardRef,
+  PropsWithChildren,
+  ReactNode,
+} from 'react';
 import classnames from 'classnames';
+
 import { Slot, Slottable } from '../common/slot';
+import Spinner from '../spinner/Spinner';
 
 import '@/index.css';
-import Spinner from '../spinner/Spinner';
 
 interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   asChild?: boolean;
   isLoading?: boolean;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
 }
 
 /**
@@ -22,7 +30,16 @@ interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
  */
 const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
   (
-    { asChild, className, isLoading = false, children, disabled, ...restProps },
+    {
+      className,
+      asChild,
+      isLoading = false,
+      leftIcon,
+      rightIcon,
+      children,
+      disabled,
+      ...restProps
+    },
     ref
   ) => {
     const Element = asChild ? Slot : 'button';
@@ -38,7 +55,15 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
         disabled={disabled || isLoading}
         {...restProps}
       >
-        {isLoading ? <Spinner size="md" /> : <Slottable>{children}</Slottable>}
+        {isLoading ? (
+          <Spinner size="md" />
+        ) : (
+          <Slottable>
+            {leftIcon && leftIcon}
+            {children}
+            {rightIcon && rightIcon}
+          </Slottable>
+        )}
       </Element>
     );
   }
